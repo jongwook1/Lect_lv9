@@ -86,7 +86,10 @@ public class Shop {
 				im.printCategory();
 			} else if (sel == 2) {
 				im.addCategory();
-			} else if (sel == 0) {
+			}else if(sel==3) {
+				im.removeCategory();
+			} 
+			else if (sel == 0) {
 				run = false;
 			}
 		}

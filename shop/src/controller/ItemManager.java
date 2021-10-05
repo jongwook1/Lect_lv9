@@ -205,12 +205,21 @@ public class ItemManager {
 	}
 
 	public void addCategory() {
-		System.out.println("[카테고리추가] 카테고리 이름을 입력하세요. ");
+		System.out.println("[카테고리추가] 추가할 카테고리 이름을 입력하세요. ");
 		String name = UserManager.sc.next();
 		category.add(name);		
 	}
 
-	
+	public void removeCategory() {
+		this.printCategory();
+		System.out.println("삭제할 카테고리 번호선택");
+		
+		int delCateIdx=UserManager.sc.nextInt();
+		this.category.remove(delCateIdx);
+		
+	}
+
+
 
 
 
