@@ -42,17 +42,35 @@ public class Shop {
 	private void managerMenu() {
 		boolean run = true;
 		while (run) {
-			System.out.println("[1.아이템관리] [2.카테고리관리] [3.장바구니관리] [4.유저관리] [0.뒤로가기] ");
+			System.out.println("[1.아이템관리] [2.카테고리관리] [3.유저관리] [0.뒤로가기] ");
 			int sel = UserManager.sc.nextInt();
 			if (sel == 1) {
 				itemMenu();
 			} else if (sel == 2) {
 				categoryMenu();
 			} else if (sel == 3) {
+				userMenu();				
+			}  else if (sel == 0) {
+				run = false;
+			}
+		}
+		
+	}
 
-			} else if (sel == 4) {
-//				userMenu();
-			} else if (sel == 0) {
+	private void userMenu() {
+		boolean run = true;
+		while (run) {
+			System.out.println("[1.전체유저] [2.유저추가] [3.유저삭제] [0.뒤로가기]");
+			int sel = UserManager.sc.nextInt();
+			if (sel == 1) {
+				this.printAllData();
+			}else if(sel==2) {
+				um.joinUser();
+			} 
+			else if(sel==3) {
+				um.outUser();
+			}
+			else if (sel == 0) {
 				run = false;
 			}
 		}

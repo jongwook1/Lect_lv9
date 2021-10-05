@@ -204,7 +204,13 @@ public class ItemManager {
 		this.itemList.remove(delItemIdx);
 	}
 
+	public void addCategory() {
+		System.out.println("[카테고리추가] 카테고리 이름을 입력하세요. ");
+		String name = UserManager.sc.next();
+		category.add(name);		
+	}
 
+	
 
 
 
