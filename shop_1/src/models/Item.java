@@ -1,10 +1,13 @@
 package models;
 
-public class Item {
 
+
+public class Item {
+	
+	
 	private String name;
 	private int price;
-	private String category;
+	private String category;		//카테고리 정보를 담음	
 	
 	public Item(String name,int price,String category) {
 		this.name=name;
@@ -34,6 +37,11 @@ public class Item {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	public void print() {
+		System.out.println("["+this.name+"]"+"["+this.price+"]"+"["+this.category+"]");
+		
 	}
 
 }

@@ -2,13 +2,15 @@ package controller;
 
 import java.util.ArrayList;
 
+import models.Cart;
 import models.Item;
+import models.User;
 
 public class ItemManager {
 	public static ItemManager instance = new ItemManager();
 	private ArrayList<String> category = new ArrayList<>(); // 여것 살짝 놓칠수있음 확인하기!
 	private ArrayList<Item> itemList = new ArrayList<>(); // 전체 아이템리스트
-
+	private ArrayList<Cart> jang=new ArrayList<>();	//전체 장바구니
 	public ItemManager() {
 		init();
 	}
@@ -52,7 +54,7 @@ public class ItemManager {
 		}
 
 	}
-		//핵심
+		//헷갈렸음
 	public void printItemList(int caN) {
 	 int n=0;
 	 for(int i=0;i<this.itemList.size();i++) {
@@ -63,6 +65,37 @@ public class ItemManager {
 		 }
 	 }
 		
+	}
+		//다시보기
+	public void addCart(String id, int caN, int itemN) {
+		int n=0;
+		Cart newCart=new Cart();
+		newCart.setUserId(id);
+		for(int i=0;i<this.itemList.size();i++) {		//이부분 특히잘보기
+			if(this.category.get(caN).equals(this.itemList.get(i).getCategory())) {
+				if(itemN==n) {
+					newCart.setItemName(this.itemList.get(i).getName());
+					newCart.setPrice(this.itemList.get(i).getPrice());
+				}
+				n++;
+			}
+		}
+		
+	}
+
+	public void printJang(User user) {
+		if (this.jang.size() > 0) {
+			int n = 0;
+			for (int i = 0; i < this.jang.size(); i++) {
+				if (this.jang.get(i).getUserId().equals(user.getId())) {
+					this.jang.get(i).print(n);
+					n++;
+				}
+			}
+
+		} else {
+			System.out.println("장바구니가 비었습니다");
+		}
 	}
 
 }

@@ -50,7 +50,26 @@ public class Shop {
 		if(sel==1) {
 			shopMenu();
 		}
+		else if(sel==2) {
+			jangMenu();
+		}
+		else if(sel==0) {
+			break;
+		}
+		}
+	}
+
+
+
+	private void jangMenu() {
+		while(true) {
+		System.out.println("[1.내 장바구니] [2.삭제] [3.구입] [0.뒤로가기]");
+		int sel=sc.nextInt();
+		if(sel==1) {
+			im.printJang(um.getUserList().get(um.log));
+		}
 		else if(sel==2) {}
+		else if(sel==3) {}
 		else if(sel==0) {
 			break;
 		}
@@ -67,8 +86,10 @@ public class Shop {
 		if(caN==-1) {
 			break;
 		}
-		System.out.println("[아이템] 번호 입력하세요");
 		im.printItemList(caN);						//놓치기쉬움				
+		System.out.println("[아이템] 번호 입력하세요");
+		int itemN=sc.nextInt();
+		im.addCart(um.getUserList().get(um.log).getId(),caN,itemN);
 		}
 	}
 
