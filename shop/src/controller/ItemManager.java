@@ -174,7 +174,10 @@ public class ItemManager {
 		if(money>=totalPrice) {
 		money-=totalPrice;
 		user.setMoney(money);
+//		this.printJang(um.getUsers().get(um.log));
+		this.printJang(user);
 		System.out.println("아이템 구입완료");
+		System.out.println("물건구입후 잔액: "+user.getMoney());
 		}else {
 			System.out.println("잔액이 부족합니다");
 		}
