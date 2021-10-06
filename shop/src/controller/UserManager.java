@@ -37,7 +37,7 @@ public class UserManager {
 				User u=new User(ranCode(),id,pw);
 				userList.add(u);				
 			}else {
-				System.out.println("Áßº¹µÈ ¾ÆµğÀÔ´Ï´Ù");
+				System.out.println("ì¤‘ë³µëœ ì•„ë””ì…ë‹ˆë‹¤");
 			}			
 			
 			
@@ -71,7 +71,7 @@ public class UserManager {
 		}
 
 		public void outUser() {
-			System.out.println("Å»ÅğÇÒ À¯ÀúÄÚµå ÀÔ·ÂÇÏ¼¼¿ä");
+			System.out.println("íƒˆí‡´í•  ìœ ì €ì½”ë“œ ì…ë ¥í•˜ì„¸ìš”");
 			int delUserCode=sc.nextInt();
 			
 			User delUser=null;
@@ -93,17 +93,17 @@ public class UserManager {
 
 				for (int i = 0; i < this.getUsers().size(); i++) {
 					if (userList.get(i).getId().equals(id) && userList.get(i).getPw().equals(pw)) {
-						System.out.println(this.userList.get(i).getName() + "´Ô ·Î±×ÀÎµÇ¼Ì½À´Ï´Ù");
+						System.out.println(this.userList.get(i).getName() + "ë‹˜ ë¡œê·¸ì¸ë˜ì…¨ìŠµë‹ˆë‹¤");
 						this.log = i;
 						return true;
 					}
 				}
 				if (this.log == -1) {
-					System.out.println("¾ÆÀÌµğ¿Í ºñ¹øÈ®ÀÎÇØÁÖ¼¼¿ä");
+					System.out.println("ì•„ì´ë””ì™€ ë¹„ë²ˆí™•ì¸í•´ì£¼ì„¸ìš”");
 					return false;
 				}
 			} else {
-				System.out.println("·Î±×¾Æ¿ôÀ» ¸ÕÀúÇØÁÖ¼¼¿ä");
+				System.out.println("ë¡œê·¸ì•„ì›ƒì„ ë¨¼ì €í•´ì£¼ì„¸ìš”");
 				return false;
 			}
 			return false;
@@ -112,7 +112,7 @@ public class UserManager {
 
 		public void logOut() {
 			if(this.log!=-1) {
-				System.out.println(this.userList.get(this.log).getName()+"´Ô ·Î±×¾Æ¿ôµÇ¼Ì½À´Ï´Ù");
+				System.out.println(this.userList.get(this.log).getName()+"ë‹˜ ë¡œê·¸ì•„ì›ƒë˜ì…¨ìŠµë‹ˆë‹¤");
 				this.log=-1;
 				
 			}

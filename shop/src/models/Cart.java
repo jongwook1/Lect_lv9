@@ -1,18 +1,10 @@
 package models;
 
 public class Cart {
-	private String userId; // ±¸ÀÔÇÑ À¯Àú id
-	private String itemName; // ±¸ÀÔÇÑ ¾ÆÀÌÅÛ
+	private String userId;	// êµ¬ì…í•œ ìœ ì € id
+	private String itemName; // êµ¬ì…í•œ ì•„ì´í…œ
 	private int price;
-	private boolean check=false;
-	
-	public boolean isCheck() {
-		return check;
-	}
 
-	public void setCheck(boolean check) {
-		this.check = check;
-	}
 
 	public int getPrice() {
 		return price;
@@ -39,9 +31,9 @@ public class Cart {
 	}
 
 	public void print(int n) {
-//		System.out.println("[" + userId + "]" + "¾ÆÀÌÅÛ : " + itemName);	
+//		System.out.println("[" + userId + "]" + "ì•„ì´í…œ  : " + itemName);	
 		
-		System.out.println(n+1+"¹ø"+"[" +"userId: "+ userId + "]" + "¾ÆÀÌÅÛ : " + itemName);
+		System.out.println(n+1+"ë²ˆ"+"[" +"userId: "+ userId + "]" + "ì•„ì´í…œì´ë¦„ : " + itemName);
 		
 	}
 }

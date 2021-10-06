@@ -41,9 +41,9 @@ public class User {
 	private String init() {
 		Random ran=new Random();
 		String name="";
-		String[] a = { "±è", "¹Ú", "ÀÌ", "ÃÖ", "Á¤", "¿À" };
-		String[] b = { "Ã¶", "º´", "¸¸", "¿©", "¾Æ", "¿µ" };
-		String[] c = { "¼ö", "¿í", "¼ö", "Á¤", "¸§", "Èñ" };
+		String[] a = { "ê¹€", "ë°•", "ì´", "ìµœ", "ì •", "ì˜¤" };
+		String[] b = { "ì² ", "ë³‘", "ë§Œ", "ì—¬", "ì•„", "ì˜" };
+		String[] c = { "ìˆ˜", "ìš±", "ìˆ˜", "ì •", "ë¦„", "í¬" };
 		for (int i = 0; i < 10; i++) {
 			int r = ran.nextInt(a.length);
 			name = a[r];

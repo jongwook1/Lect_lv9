@@ -9,8 +9,8 @@ import models.User;
 public class ItemManager {
 	public static ItemManager instance=new ItemManager();
 	private ArrayList<String> category=new ArrayList<String>();
-	private ArrayList<Item> itemList=new ArrayList<Item>();		 // ÀüÃ¼ ¾ÆÀÌÅÛ¸®½ºÆ®
-	private ArrayList<Cart> jangList = new ArrayList<Cart>();		// ÀüÃ¼ Àå¹Ù±¸´Ï
+	private ArrayList<Item> itemList=new ArrayList<Item>();		 // ì „ì²´ ì•„ì´í…œë¦¬ìŠ¤íŠ¸
+	private ArrayList<Cart> jangList = new ArrayList<Cart>();		// ì „ì²´ ì¥ë°”êµ¬ë‹ˆ
 	
 	private UserManager um=UserManager.instance;
 	public ItemManager() {
@@ -18,37 +18,37 @@ public class ItemManager {
 	}
 	
 	void init() {
-		this.category.add("°úÀÚ");		//get(0)
-		this.category.add("»ı¼±");		//get(1)
-		this.category.add("À°·ù");		//get(2)
-		this.category.add("À½·á¼ö");		//get(3)
-	//ItemÅ¬·¡½º »ı¼ºÀÚ
+		this.category.add("ê³¼ì");		//get(0)
+		this.category.add("ìƒì„ ");		//get(1)
+		this.category.add("ìœ¡ë¥˜");		//get(2)
+		this.category.add("ìŒë£Œìˆ˜");		//get(3)
+	//ItemÅ¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //		String name;
 //		int price;
 //		String category;
-		Item item=new Item("»õ¿ì±ø",1000,this.category.get(0));
+		Item item=new Item("ìƒˆìš°ê¹¡",1000,this.category.get(0));
 		itemList.add(item);
-		item=new Item("Ä­ÃÊ",1500,this.category.get(0));
+		item=new Item("ì¹¸ì´ˆ",1500,this.category.get(0));
 		itemList.add(item);
-		item=new Item("²¿ºÏÄ¨",2000,this.category.get(0));
+		item=new Item("í¬ì¹´ì¹©Ä¨",2000,this.category.get(0));
 		itemList.add(item);
-		item=new Item("°íµî¾î",5500,this.category.get(1));
+		item=new Item("ê³ ë“±ì–´",5500,this.category.get(1));
 		itemList.add(item);
-		item=new Item("ÀÌ¸é¼ö",4500,this.category.get(1));
+		item=new Item("ìƒˆìš°",4500,this.category.get(1));
 		itemList.add(item);
-		item=new Item("°¥Ä¡",6500,this.category.get(1));
+		item=new Item("ê°ˆì¹˜",6500,this.category.get(1));
 		itemList.add(item);
-		item=new Item("¼Ò°í±â",9500,this.category.get(2));
+		item=new Item("ì†Œê³ ê¸°",9500,this.category.get(2));
 		itemList.add(item);
-		item=new Item("¾ç°í±â",9800,this.category.get(2));
+		item=new Item("ì–‘ê³ ê¸°",9800,this.category.get(2));
 		itemList.add(item);
-		item=new Item("µÅÁö°í±â",6500,this.category.get(2));
+		item=new Item("ë¼ì§€ê³ ê¸°",6500,this.category.get(2));
 		itemList.add(item);
-		item=new Item("Äİ¶ó",2500,this.category.get(3));
+		item=new Item("ì½œë¼",2500,this.category.get(3));
 		itemList.add(item);
-		item=new Item("»çÀÌ´Ù",2200,this.category.get(3));
+		item=new Item("ì‚¬ì´ë‹¤",2200,this.category.get(3));
 		itemList.add(item);
-		item=new Item("È¯Å¸",2000,this.category.get(3));
+		item=new Item("í™˜íƒ€",2000,this.category.get(3));
 		itemList.add(item);
 		
 	}
@@ -64,7 +64,7 @@ public class ItemManager {
 //		this.category.get(pick).
 //	}
 	
-	//ÀÌºÎºĞÁ» Çò°¥¸®¹Ç·Î ´Ù½Ãº¸±â
+	//ï¿½ÌºÎºï¿½ï¿½ï¿½ ï¿½ò°¥¸ï¿½ï¿½Ç·ï¿½ ï¿½Ù½Ãºï¿½ï¿½ï¿½
 	public void printItemList(int caId) {
 		int n = 0;
 		for(int i=0;i<this.itemList.size();i++) {
@@ -83,7 +83,7 @@ public class ItemManager {
 		}
 	}
 	
-	//ÀÌºÎºĞµµ Àßº¸±â
+	//ï¿½ÌºÎºĞµï¿½ ï¿½ßºï¿½ï¿½ï¿½
 	public void addCart(String usId,int caId,int itId) {
 		int n=0;
 		Cart newCart=new Cart();
@@ -105,7 +105,7 @@ public class ItemManager {
 
 	public void printJang(User user) {
 		if(this.jangList.size()>0) {
-			int n=0;					//¾ÆÀÌÅÛÀÇ ³Ñ¹ö¸µÀ» À§ÇÑº¯¼ö
+			int n=0;					//ë„˜ë²„ë§ì„ ìœ„í•œ ë³€ìˆ˜
 		for (int i = 0; i < jangList.size(); i++) {
 			if (user.getId().equals(jangList.get(i).getUserId())) {
 				
@@ -114,16 +114,16 @@ public class ItemManager {
 			}
 		}
 		}else {
-			System.out.println("Àå¹Ù±¸´Ï°¡ ºñ¾ú½À´Ï´Ù");
+			System.out.println("ì¥ë°”êµ¬ë‹ˆê°€ ë¹„ì—ˆìŠµë‹ˆë‹¤");
 		}
 	}
-	///jangÁï Cart¿ÀºêÁ§Æ®¸¦ Áö¿ì´Â°Í
+	///jangì¦‰ Cartì˜¤ë¸Œì íŠ¸ë¥¼ ì§€ìš°ëŠ”ê²ƒ
 	public void removeCart(User user) {		
 		printJang(user);
 		
 		
 		
-		System.out.println("Áö¿ï¹øÈ£¸¦ ¼±ÅÃÇÏ¼¼¿ä");
+		System.out.println("ì§€ìš¸ë²ˆí˜¸ë¥¼ ì„ íƒí•˜ì„¸ìš”");
 		int idx=UserManager.sc.nextInt();
 		
 		int jangIdx=-1;
@@ -166,41 +166,40 @@ public class ItemManager {
 	public void buyItem(User user) {
 		int money=user.getMoney();
 		int totalPrice=0;
-		int idx=-1;
+
 		for(int i=0;i<this.jangList.size();i++) {
 			if(this.jangList.get(i).getUserId()==user.getId()) {
 				totalPrice+=this.jangList.get(i).getPrice();
-				idx=i;
 			}
 		}
 		if(money>=totalPrice) {
 		money-=totalPrice;
 		user.setMoney(money);
-		this.jangList.get(idx).setCheck(true);
+
 //		this.printJang(um.getUsers().get(um.log));
 		this.printJang(user);
 		
-		System.out.println("¾ÆÀÌÅÛ ±¸ÀÔ¿Ï·á");
-		System.out.println("¹°°Ç±¸ÀÔÈÄ ÀÜ¾×: "+user.getMoney());
+		System.out.println("ì•„ì´í…œ êµ¬ì…ì™„ë£Œ");
+		System.out.println("ë¬¼ê±´êµ¬ì…í›„ ì”ì•¡: "+user.getMoney());
 		}else {
-			System.out.println("ÀÜ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù");
+			System.out.println("ì”ì•¡ì´ ë¶€ì¡±í•©ë‹ˆë‹¤");
 		}
 	}
 	
 	public void addItem() {
-		System.out.println("[¾ÆÀÌÅÛÃß°¡] ¾ÆÀÌÅÛÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä.");
+		System.out.println("[ì•„ì´í…œì¶”ê°€] ì•„ì´í…œì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.");
 		String name = UserManager.sc.next();
-		System.out.println("[¾ÆÀÌÅÛÃß°¡] °¡°İÀ» ÀÔ·ÂÇÏ¼¼¿ä. ");
+		System.out.println("[ì•„ì´í…œì¶”ê°€] ê°€ê²©ì„ ì…ë ¥í•˜ì„¸ìš”. ");
 		int price = UserManager.sc.nextInt();
 		printCategory();
-		System.out.println("[¾ÆÀÌÅÛÃß°¡] Ä«Å×°í¸®¸¦ ÀÔ·ÂÇÏ¼¼¿ä. ");
+		System.out.println("[ì•„ì´í…œì¶”ê°€] ì¹´í…Œê³ ë¦¬ë¥¼ ì…ë ¥í•˜ì„¸ìš”. ");
 		int sel = UserManager.sc.nextInt();
 		Item temp = new Item(name, price, category.get(sel));
 		itemList.add(temp);
 	}
 
 	public void removeItem() {
-		System.out.println("[¾ÆÀÌÅÛ»èÁ¦] »èÁ¦ÇÒÀÌ¸§ ÀÔ·ÂÇÏ¼¼¿ä");
+		System.out.println("[ì•„ì´í…œì‚­ì œ] ì‚­ì œí• ì´ë¦„ ì…ë ¥í•˜ì„¸ìš”");
 		String name=UserManager.sc.next();
 		int delItemIdx=-1;
 		for(int i=0;i<this.itemList.size();i++) {
@@ -212,14 +211,14 @@ public class ItemManager {
 	}
 
 	public void addCategory() {
-		System.out.println("[Ä«Å×°í¸®Ãß°¡] Ãß°¡ÇÒ Ä«Å×°í¸® ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä. ");
+		System.out.println("[ì¹´í…Œê³ ë¦¬ì¶”ê°€] ì¶”ê°€í•  ì¹´í…Œê³ ë¦¬ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.");
 		String name = UserManager.sc.next();
 		category.add(name);		
 	}
 
 	public void removeCategory() {
 		this.printCategory();
-		System.out.println("»èÁ¦ÇÒ Ä«Å×°í¸® ¹øÈ£¼±ÅÃ");
+		System.out.println("ì‚­ì œí•  ì¹´í…Œê³ ë¦¬ ë²ˆí˜¸ì„ íƒ");
 		
 		int delCateIdx=UserManager.sc.nextInt();
 		this.category.remove(delCateIdx);
