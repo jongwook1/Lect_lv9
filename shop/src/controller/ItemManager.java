@@ -166,16 +166,20 @@ public class ItemManager {
 	public void buyItem(User user) {
 		int money=user.getMoney();
 		int totalPrice=0;
+		int idx=-1;
 		for(int i=0;i<this.jangList.size();i++) {
 			if(this.jangList.get(i).getUserId()==user.getId()) {
 				totalPrice+=this.jangList.get(i).getPrice();
+				idx=i;
 			}
 		}
 		if(money>=totalPrice) {
 		money-=totalPrice;
 		user.setMoney(money);
+		this.jangList.get(idx).setCheck(true);
 //		this.printJang(um.getUsers().get(um.log));
 		this.printJang(user);
+		
 		System.out.println("아이템 구입완료");
 		System.out.println("물건구입후 잔액: "+user.getMoney());
 		}else {

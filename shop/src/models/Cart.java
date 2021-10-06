@@ -4,7 +4,16 @@ public class Cart {
 	private String userId; // 구입한 유저 id
 	private String itemName; // 구입한 아이템
 	private int price;
+	private boolean check=false;
 	
+	public boolean isCheck() {
+		return check;
+	}
+
+	public void setCheck(boolean check) {
+		this.check = check;
+	}
+
 	public int getPrice() {
 		return price;
 	}
