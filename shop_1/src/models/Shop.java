@@ -59,7 +59,7 @@ public class Shop {
 				userMenu();
 			}
 			else if(sel==4) {
-				
+				salesStatus();
 			}
 			else if(sel==0) {
 				break;
@@ -68,7 +68,16 @@ public class Shop {
 		
 	}
 
-
+	private void salesStatus() {
+		if(um.getUserList().size()>0) {
+		for(int i=0;i<um.getUserList().size();i++) {
+			im.printJang(um.getUserList().get(i));
+			
+		}
+		}else {
+			System.out.println("가입한 유저가없습니다");
+		}
+	}
 
 	private void userMenu() {
 		while (true) {
