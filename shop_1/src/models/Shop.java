@@ -33,10 +33,102 @@ public class Shop {
 			else if(sel==4) {
 				um.logout();
 			}
-			else if(sel==100) {}
-			else if(sel==0) {}
+			else if(sel==100) {
+				managerMenu();
+			}
+			else if(sel==0) {
+				isRun=false;
+			}
 		}
 
+	}
+
+
+
+	private void managerMenu() {
+		while(true) {
+			System.out.println("[1.아이템관리] [2.카테고리관리] [3.유저관리] [4.판매현황] [0.뒤로가기] ");
+			int sel=sc.nextInt();
+			if(sel==1) {
+				itemMenu();
+			}
+			else if(sel==2) {
+				categoryMenu();
+			}
+			else if(sel==3) {
+				userMenu();
+			}
+			else if(sel==4) {
+				
+			}
+			else if(sel==0) {
+				break;
+			}
+		}
+		
+	}
+
+
+
+	private void userMenu() {
+		while (true) {
+			System.out.println("[1.전체유저] [2.유저추가] [3.유저삭제] [0.뒤로가기]");
+			int sel =sc.nextInt();
+			if (sel == 1) {
+				this.printAllData();
+			}else if(sel==2) {
+				um.joinUser();
+			} 
+			else if(sel==3) {
+				um.outUser();
+			}
+			else if (sel == 0) {
+				break;
+			}
+		}
+		
+	}
+
+
+
+	private void categoryMenu() {
+		while(true) {
+			System.out.println("[1.전체카테고리] [2.카테고리추가] [3.카테고리삭제] [0.뒤로가기]");
+			int sel = sc.nextInt();
+			if (sel == 1) {
+				im.printCate();
+			} else if (sel == 2) {
+				im.addCategory();
+			}else if(sel==3) {
+				im.removeCategory();
+			} 
+			else if (sel == 0) {
+				break;
+			}
+		}
+		
+	}
+
+
+
+	private void itemMenu() {
+		while(true) {
+			System.out.println("[1.전체아이템] [2.아이템추가] [3.아이템삭제] [0.뒤로가기]");
+			int sel=sc.nextInt();
+			if(sel==1) {
+				im.printItemList();
+			}
+			else if(sel==2) {
+				im.addItem();
+			}
+			else if(sel==3) {
+				im.removeItem();
+			}
+			else if(sel==4) {
+				break;
+			}
+		}
+		
 	}
 
 
@@ -68,8 +160,12 @@ public class Shop {
 		if(sel==1) {
 			im.printJang(um.getUserList().get(um.log));
 		}
-		else if(sel==2) {}
-		else if(sel==3) {}
+		else if(sel==2) {
+			im.removeCart(um.getUserList().get(um.log));
+		}
+		else if(sel==3) {
+			im.buyItem(um.getUserList().get(um.log));
+		}
 		else if(sel==0) {
 			break;
 		}
@@ -81,7 +177,7 @@ public class Shop {
 	private void shopMenu() {
 		while(true) {
 		im.printCate();
-		System.out.println("[카테] 번호를 입력하세요");
+		System.out.println("[카테] 번호를 입력하세요[종료.-1]");
 		int caN=sc.nextInt();
 		if(caN==-1) {
 			break;

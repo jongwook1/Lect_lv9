@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import models.Cart;
 import models.Item;
+import models.Shop;
 import models.User;
 
 public class ItemManager {
@@ -80,12 +81,12 @@ public class ItemManager {
 				n++;
 			}
 		}
-		
+		this.jang.add(newCart);
 	}
 
 	public void printJang(User user) {
 		if (this.jang.size() > 0) {
-			int n = 0;
+			int n = 0;					//넘버링을 위한 변수
 			for (int i = 0; i < this.jang.size(); i++) {
 				if (this.jang.get(i).getUserId().equals(user.getId())) {
 					this.jang.get(i).print(n);
@@ -97,5 +98,112 @@ public class ItemManager {
 			System.out.println("장바구니가 비었습니다");
 		}
 	}
+
+	public void removeCart(User user) {
+		if(this.jang.size()>0) {
+		printJang(user);
+			System.out.println("삭제할 번호입력하세요");
+			int idx=Shop.sc.nextInt();
+			int jangIdx=-1;
+			
+			int cnt=0;
+			for(int i=0;i<this.jang.size();i++) {
+				if(this.jang.get(i).getUserId().equals(user.getId())) {
+//				if(this.jangList.get(i).getUserId()==user.getId()) { 이것도 되는이유 질문하기
+					cnt++;
+				}
+				if(cnt==idx) {
+					jangIdx=i;
+				}
+			}
+			this.jang.remove(jangIdx);
+		}else {
+			System.out.println("장바구니가 비어있습니다");
+		}
+		
+	}
+
+	public void buyItem(User user) {
+		int money=user.getMoney();
+		int total=0;
+		
+		for(int i=0;i<this.jang.size();i++) {
+			if(this.jang.get(i).getUserId().equals(user.getId())) {
+				total+=jang.get(i).getPrice();
+			}
+		}
+		if(money>=total) {
+			money-=total;
+			user.setMoney(money);
+		this.printJang(user);
+		System.out.println("아이템구입완료");
+		System.out.println("물건구입후 잔액: "+user.getMoney());
+		}else {
+			System.out.println("잔액이 부족합니다");
+		}
+		
+	}
+
+	public void printItemList() {
+		for(int i=0;i<this.itemList.size();i++) {
+			System.out.print("[" + i + "]");
+			this.itemList.get(i).print();
+		}
+		
+	}
+
+	public void addItem() {
+		System.out.println("[아이템추가] 아이템이름 입력하세요");
+		String name=Shop.sc.next();
+		System.out.println("[아이템추가] 가격을 입력하세요");
+		int price=Shop.sc.nextInt();
+		printCate();
+		System.out.println("[아이템추가] 카테고리를 선택하세요");
+		int sel=Shop.sc.nextInt();
+		Item newitem=new Item(name,price, this.category.get(sel));
+		this.itemList.add(newitem);
+	}
+
+	public void removeItem() {
+		//아이템으로 번호찾은후 삭제
+		System.out.println("[아이템삭제] 삭제할 이름 입력하세요");
+		String delName=Shop.sc.next();
+		int dIdx=-1;
+		for(int i=0;i<this.itemList.size();i++) {
+			if(this.itemList.get(i).getName().equals(delName)) {
+				dIdx=i;
+			}
+		}
+		this.itemList.remove(dIdx);
+		
+		
+		//인덱스로 삭제
+//		for(int i=0;i<this.itemList.size();i++) {
+//			System.out.print("[" + i + "]");
+//			this.itemList.get(i).print();
+//		}
+//		System.out.println("삭제할 번호선택");
+//		int sel=Shop.sc.nextInt();
+//		this.itemList.remove(sel);
+		
+	}
+
+	public void addCategory() {
+		System.out.println("추가할 카테고리명 입력하세요");
+		String cateName=Shop.sc.next();
+		this.category.add("cateName");
+		
+	}
+
+	public void removeCategory() {
+		this.printCate();
+		System.out.println("삭제할 카테고리 번호선택");
+		
+		int delCateIdx=Shop.sc.nextInt();
+		this.category.remove(delCateIdx);
+		
+	}
+
+
 
 }
