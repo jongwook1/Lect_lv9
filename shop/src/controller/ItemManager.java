@@ -88,7 +88,7 @@ public class ItemManager {
 		int n=0;
 		Cart newCart=new Cart();
 		newCart.setUserId(usId);
-		for(int i=0;i<this.itemList.size();i++) {
+		for(int i=0;i<this.itemList.size();i++) {		//이부분 특히잘보기
 			if(this.category.get(caId).equals(this.itemList.get(i).getCategory())) {
 				if(itId==n) {
 					newCart.setItemName(this.itemList.get(i).getName());
@@ -131,6 +131,7 @@ public class ItemManager {
 		int cnt=0;
 		for(int i=0;i<this.jangList.size();i++) {
 			if(this.jangList.get(i).getUserId()==user.getId()) {
+//			if(this.jang.get(i).getUserId().equals(user.getId())) {  이게 맞는것아닌가?질문하기
 				cnt++;
 				if(cnt==idx) {
 					jangIdx=i;
