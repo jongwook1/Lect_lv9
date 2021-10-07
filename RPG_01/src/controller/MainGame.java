@@ -26,7 +26,9 @@ public class MainGame {
 			if(sel==1) {
 				player.guildMenu();
 			}
-			else if(sel==2) {}
+			else if(sel==2) {
+				shop.shopMenu();
+			}
 			else if(sel==3) {}
 			else if(sel==4) {}
 			else if(sel==5) {}

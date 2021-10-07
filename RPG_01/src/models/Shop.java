@@ -8,63 +8,63 @@ public class Shop {
 	public Shop() {
 		Item temp = new Item();
 		temp.kind = Item.WEAPON;
-		temp.name = "ÃÊ½ÉÀÚÀÇ °Ë";
+		temp.name = "ì´ˆë³´ììš© ê²€";
 		temp.power = 3;
 		temp.price = 1000;
 		itemList.add(temp);
 
 		temp = new Item();
 		temp.kind = Item.WEAPON;
-		temp.name = "Áß±ŞÀÚÀÇ °Ë";
+		temp.name = "ì¤‘ê¸‰ììš© ê²€";
 		temp.power = 5;
 		temp.price = 2000;
 		itemList.add(temp);
 
 		temp = new Item();
 		temp.kind = Item.WEAPON;
-		temp.name = "¼÷·ÃÀÚÀÇ °Ë";
+		temp.name = "ìˆ™ë ¨ììš© ê²€";
 		temp.power = 7;
 		temp.price = 2500;
 		itemList.add(temp);
 
 		temp = new Item();
 		temp.kind = Item.ARMOR;
-		temp.name = "ÃÊ½ÉÀÚÀÇ °©¿Ê";
+		temp.name = "ì´ˆë³´ììš© ê°‘ì˜·";
 		temp.power = 1;
 		temp.price = 300;
 		itemList.add(temp);
 
 		temp = new Item();
 		temp.kind = Item.ARMOR;
-		temp.name = "Áß±ŞÀÚÀÇ °©¿Ê";
+		temp.name = "ì¤‘ê¸‰ììš© ê°‘ì˜·";
 		temp.power = 4;
 		temp.price = 800;
 		itemList.add(temp);
 
 		temp = new Item();
 		temp.kind = Item.ARMOR;
-		temp.name = "¼÷·ÃÀÚÀÇ °©¿Ê";
+		temp.name = "ìˆ™ë ¨ììš© ê°‘ì˜·";
 		temp.power = 7;
 		temp.price = 1500;
 		itemList.add(temp);
 
 		temp = new Item();
 		temp.kind = Item.RING;
-		temp.name = "Àº¹İÁö";
+		temp.name = "ì€ë°˜ì§€";
 		temp.power = 7;
 		temp.price = 3000;
 		itemList.add(temp);
 
 		temp = new Item();
 		temp.kind = Item.RING;
-		temp.name = "±İ¹İÁö";
+		temp.name = "ê¸ˆë°˜ì§€";
 		temp.power = 17;
 		temp.price = 6000;
 		itemList.add(temp);
 
 		temp = new Item();
 		temp.kind = Item.RING;
-		temp.name = "´ÙÀÌ¾Æ¹İÁö";
+		temp.name = "ë‹¤ì´ì•„ë°˜ì§€";
 		temp.power = 35;
 		temp.price = 20000;
 		itemList.add(temp);
@@ -73,5 +73,17 @@ public class Shop {
 		
 		
 		
+	}
+
+	public void shopMenu() {
+		while(true) {
+		System.out.println("===============[ìƒì ]=============");
+		System.out.println("[1.ë¬´ê¸°] [2.ê°‘ì˜·] [3.ë°˜ì§€] [0.ë’¤ë¡œê°€ê¸°]");
+		
+		
+		
+		
+		
+		}
 	}
 }
