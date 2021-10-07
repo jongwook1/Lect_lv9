@@ -29,7 +29,9 @@ public class MainGame {
 			else if(sel==2) {
 				shop.shopMenu();
 			}
-			else if(sel==3) {}
+			else if(sel==3) {
+				player.inventoryMenu();
+			}
 			else if(sel==4) {}
 			else if(sel==5) {}
 			else {

@@ -153,4 +153,24 @@ public class Unit {
 	public void setRing(Item ring) {
 		this.ring = ring;
 	}
+	
+	public void printEquItem() {
+		if(this.weapon==null) {
+			System.out.println("[무기 : 없음 ]");			
+		}else {
+			System.out.println("[무기 : "+this.weapon.name+"]");
+		}
+		if(this.armor==null) {
+			System.out.println("[방어구 : 없음 ]");			
+		}else {
+			System.out.println("[방어구 : "+this.armor.name+"]");
+		}
+		if(this.ring==null) {
+			System.out.println("[반지 : 없음 ]");			
+		}else {
+			System.out.println("[반지 : "+this.ring.name+"]");
+		}
+	}
+	
+	
 }

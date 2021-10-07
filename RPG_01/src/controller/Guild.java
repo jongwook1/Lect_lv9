@@ -198,7 +198,7 @@ public class Guild {
 	}
 
 
-	private void printAllUnitStaus() {
+	public void printAllUnitStaus() {
 		System.out.println("===========================");
 		System.out.println("[골드 : "+Player.money+"]");
 		System.out.println("========================");
@@ -214,6 +214,15 @@ public class Guild {
 			System.out.println("[파티중: "+ this.guildList.get(i).isParty()+"]");
 			System.out.println("");
 		}
+	}
+
+
+	public void printUnitStaus(int sel) {
+		this.guildList.get(sel).printStatus();		
+	}	
+
+	public void printUnitItem(int sel) {
+		this.guildList.get(sel).printEquItem();		
 	}
 	
 }
