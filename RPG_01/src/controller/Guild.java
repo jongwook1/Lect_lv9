@@ -3,17 +3,19 @@ package controller;
 import java.util.ArrayList;
 import java.util.Random;
 
+import models.Item;
 import models.Player;
+import models.Shop;
 import models.Unit;
 
 public class Guild {
 	private final int PARTY_SIZE=4;
 	private ArrayList<Unit> guildList=new ArrayList<>();
 	private Unit[] partyList;								//메뉴 main-1-4선택시 (파티원교체할때)파티원인 유닛들만 쓸때 쓰임
+//	private Item i = Item.Instance;
+	private Shop shop=Shop.instance;
 	
-	
-	
-	public void setGuild() {
+	public void setGuild() {		
 		Unit temp=new Unit("호랑이", 1, 100, 10, 5, 0);
 		this.guildList.add(temp);
 		temp = new Unit("강아지", 1, 80, 7, 3, 0);
@@ -207,10 +209,37 @@ public class Guild {
 			System.out.print("["+(i+1)+"번]");
 			System.out.print("[이름: "+ this.guildList.get(i).getName()+"]");
 			System.out.print("[레벨: "+ this.guildList.get(i).getLevel()+"]");
-			System.out.print("[체력: "+ this.guildList.get(i).getHp());
-			System.out.println(" / "+ this.guildList.get(i).getMaxHp()+"]");
-			System.out.print("[공격력: "+ this.guildList.get(i).getAtt()+"]");
-			System.out.print("[방어력: "+ this.guildList.get(i).getDef()+"]");
+//			if (this.guildList.get(i).getRing() != null) {
+//				if (Player.inven.itemList.get(i).getName().equals(shop.itemList.get(i).getName())) {
+//					int upStaus = shop.itemList.get(i).getPower();
+//					System.out.print("[체력: " + (this.guildList.get(i).getHp() + upStaus));
+//				}
+//			} else {
+//				System.out.print("[체력: " + this.guildList.get(i).getHp());
+//			}
+			if (this.guildList.get(i).getRing() != null) {
+				int upStaus=this.guildList.get(i).getRing().getPower();
+				System.out.print("[체력: " + (this.guildList.get(i).getHp()+upStaus));			
+				System.out.println(" / "+ (this.guildList.get(i).getMaxHp()+upStaus)+"]");
+			} else {
+				System.out.print("[체력: " + this.guildList.get(i).getHp());
+				System.out.println(" / "+ this.guildList.get(i).getMaxHp()+"]");
+			}
+			if (this.guildList.get(i).getWeapon() != null) {
+				int upStaus=this.guildList.get(i).getWeapon().getPower();
+				System.out.print("[공격력: " + (this.guildList.get(i).getAtt()+upStaus)+"]");			
+			} else {
+				System.out.print("[공격력: " + this.guildList.get(i).getAtt()+"]");
+			}
+			
+//			System.out.print("[공격력: "+ this.guildList.get(i).getAtt()+"]");
+			if (this.guildList.get(i).getArmor() != null) {
+				int upStaus=this.guildList.get(i).getArmor().getPower();
+				System.out.print("[방어력: " + (this.guildList.get(i).getDef()+upStaus)+"]");			
+			} else {
+				System.out.print("[방어력: " + this.guildList.get(i).getDef()+"]");
+			}
+//			System.out.print("[방어력: "+ this.guildList.get(i).getDef()+"]");
 			System.out.println("[파티중: "+ this.guildList.get(i).isParty()+"]");
 			System.out.println("");
 		}
@@ -223,6 +252,11 @@ public class Guild {
 
 	public void printUnitItem(int sel) {
 		this.guildList.get(sel).printEquItem();		
+	}
+
+
+	public Unit getGuildUnit(int num) {
+		return guildList.get(num);
 	}
 	
 }

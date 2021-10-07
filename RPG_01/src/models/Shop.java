@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import controller.MainGame;
 
 public class Shop {
-	ArrayList<Item> itemList = new ArrayList<>();
+	public static Shop instance=new Shop();
+	public ArrayList<Item> itemList = new ArrayList<>();
 	
 	public Shop() {
 		Item temp = new Item();
@@ -89,10 +90,10 @@ public class Shop {
 					System.out.println();
 				}
 				else if(sel==Item.ARMOR) {
-					
+					System.out.println();
 				}
 				else if(sel==Item.RING) {
-					
+					System.out.println();
 				}
 				printItems(sel);
 				System.out.println("[골드 : "+Player.money);
@@ -121,16 +122,18 @@ public class Shop {
 	private void printItems(int sel) {
 		int count =0;
 		for(int i=0;i<this.itemList.size();i++) {
-			if(this.itemList.get(i).kind==sel) {
+			if(this.itemList.get(i).kind!=sel) {
+				continue;
+			}else {
 				System.out.print("["+(count+1)+"번"+"]");
 				System.out.print("[이름: "+this.itemList.get(i).name+"]");
 				System.out.print("[능력: "+this.itemList.get(i).power+"]");
 				System.out.println("[가격: "+this.itemList.get(i).price+"]");
 				count++;
-				
-			}else {
-				break;
 			}
+//			}else {
+//				break;
+//			}
 		}
 		
 	}

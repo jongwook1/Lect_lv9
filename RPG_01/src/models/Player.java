@@ -20,6 +20,10 @@ public class Player {
 	public void inventoryMenu() {
 		this.inven.inventoryMenu();
 	}
+
+	public static Unit getGuildUnit(int num) {
+		return guild.getGuildUnit(num);
+	}
 	
 	
 	

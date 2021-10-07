@@ -38,27 +38,27 @@ public class Unit {
 		System.out.print("[이름 : " + name + "]");
 		System.out.print(" [레벨 : " + level + "]");
 		if(ring!=null) {
-			System.out.print("[체력 : "+this.hp+ "+"+this.ring.power);
+			System.out.print("[체력 : "+(this.hp+ "+"+this.ring.power));
 		}
 		else {
 			System.out.print("[체력 : "+ this.hp);
 		}
 		if(ring!=null) {
-			System.out.println("/ "+this.maxHp+this.ring.power);
+			System.out.println("/ "+(this.maxHp+"+"+this.ring.power)+"]");
 		}
 		else {
-			System.out.println("/ "+this.maxHp);
+			System.out.println("/ "+this.maxHp+"]");
 		}
 
 		if(weapon!=null) {
-			System.out.print("[공격력 : "+this.att+weapon.power+"]");
+			System.out.print("[공격력 : "+(this.att+"+"+weapon.power)+"]");
 		}
 		else {
 			System.out.print("[공격력 : "+this.att+"]");
 		}
 
 		if(armor!=null) {
-			System.out.print("[방어력 : "+this.def+armor.power+"]");
+			System.out.print("[방어력 : "+(this.def+"+"+armor.power)+"]");
 		}
 		else {
 			System.out.print("[방어력 : "+this.def+"]");
