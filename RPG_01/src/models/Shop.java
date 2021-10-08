@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import controller.MainGame;
 
 public class Shop {
-	public static Shop instance=new Shop();
+
 	public ArrayList<Item> itemList = new ArrayList<>();
 	
 	public Shop() {

@@ -12,7 +12,7 @@ public class Unit {
 	private Item weapon;
 	private Item armor;
 	private Item ring;
-	
+			
 	public Unit(String name,int level,int maxHp, int att,int def,int exp) {
 		this.name=name;
 		this.level=level;

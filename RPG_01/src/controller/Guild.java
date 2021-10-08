@@ -13,7 +13,7 @@ public class Guild {
 	private ArrayList<Unit> guildList=new ArrayList<>();
 	private Unit[] partyList;								//메뉴 main-1-4선택시 (파티원교체할때)파티원인 유닛들만 쓸때 쓰임
 //	private Item i = Item.Instance;
-	private Shop shop=Shop.instance;
+
 	
 	public void setGuild() {		
 		Unit temp=new Unit("호랑이", 1, 100, 10, 5, 0);
@@ -209,14 +209,8 @@ public class Guild {
 			System.out.print("["+(i+1)+"번]");
 			System.out.print("[이름: "+ this.guildList.get(i).getName()+"]");
 			System.out.print("[레벨: "+ this.guildList.get(i).getLevel()+"]");
-//			if (this.guildList.get(i).getRing() != null) {
-//				if (Player.inven.itemList.get(i).getName().equals(shop.itemList.get(i).getName())) {
-//					int upStaus = shop.itemList.get(i).getPower();
-//					System.out.print("[체력: " + (this.guildList.get(i).getHp() + upStaus));
-//				}
-//			} else {
-//				System.out.print("[체력: " + this.guildList.get(i).getHp());
-//			}
+			
+			//이부분진짜 많이 헷갈렸음 숙지하기
 			if (this.guildList.get(i).getRing() != null) {
 				int upStaus=this.guildList.get(i).getRing().getPower();
 				System.out.print("[체력: " + (this.guildList.get(i).getHp()+upStaus));			
