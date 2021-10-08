@@ -9,6 +9,11 @@ import models.Shop;
 import models.Unit;
 
 public class Guild {
+	public ArrayList<Unit> getGuildList() {
+		return guildList;
+	}
+
+
 	private final int PARTY_SIZE=4;
 	private ArrayList<Unit> guildList=new ArrayList<>();
 	private Unit[] partyList;								//메뉴 main-1-4선택시 (파티원교체할때)파티원인 유닛들만 쓸때 쓰임
@@ -94,42 +99,54 @@ public class Guild {
 	private void partyChange() {
 		printParty();
 		System.out.println("교체할 번호 입력하세요");
-		int partyOutN=MainGame.sc.nextInt()-1;		//인덱스로 사용하기위해 -1함
-		printNotParty();
-		System.out.println("참가할 번호 입력하세요");		//인덱스로 사용하기위해 -1함
-		int partyInN=MainGame.sc.nextInt()-1;
-		
-		this.partyList[partyOutN].setParty(false);
-		this.guildList.get(partyInN).setParty(true);
-		
-		//파티리스트를 교체된인원에 맞춰 새로 만들어줌
-		int n=0;
-		for(int i=0;i<this.guildList.size();i++) {
-			if(this.guildList.get(i).isParty()) {
-				this.partyList[n]=this.guildList.get(i);
-				n++;
+		int partyOutN = MainGame.sc.nextInt() - 1; // 인덱스로 사용하기위해 -1함
+//		printNotParty();
+		printAllUnitStaus();
+		System.out.println("참가할 번호 입력하세요"); // 인덱스로 사용하기위해 -1함
+		int partyInN = MainGame.sc.nextInt() - 1;
+
+		if (partyOutN < this.PARTY_SIZE && partyOutN >= 0 && partyInN < this.guildList.size() && partyInN >= 0) {
+			this.partyList[partyOutN].setParty(false);
+			this.guildList.get(partyInN).setParty(true);
+
+			System.out.println("====================================");
+			System.out.print("[이름 : " + partyList[partyOutN].getName() + "]");
+			System.out.print("에서 ");
+			System.out.print("[이름 : " + guildList.get(partyInN).getName() + "]");
+			System.out.println("으로 교체 합니다. ");
+			System.out.println("====================================");
+			// 파티리스트를 교체된인원에 맞춰 새로 만들어줌
+			int n = 0;
+			for (int i = 0; i < this.guildList.size(); i++) {
+				if (this.guildList.get(i).isParty()) {
+					this.partyList[n] = this.guildList.get(i);
+					n++;
+				}
 			}
+
+		} else {
+			System.out.println("번호를 확인해주세요");
 		}
 	}
 	
 	
 	
-	private void printNotParty() {
-		System.out.println("===================[파티원아닌 유닛들]============");
-		for(int i=0;i<this.guildList.size();i++) {
-			if(!this.guildList.get(i).isParty()) {
-			System.out.print("[" + (i + 1) + "번]");			
-			System.out.print(" [이름 : " + this.guildList.get(i).getName() + "]");
-			System.out.print(" [레벨 : " + this.guildList.get(i).getLevel() + "]");
-			System.out.print(" [체력 : " + this.guildList.get(i).getHp());
-			System.out.println(" / " + this.guildList.get(i).getMaxHp() + "]");
-			System.out.print("[공격력 : " + this.guildList.get(i).getAtt()+ "]");
-			System.out.print(" [방어력 : " + this.guildList.get(i).getDef() + "]");
-			System.out.println(" [파티중 : " + this.guildList.get(i).isParty() + "]");
-			System.out.println("");	
-		}
-			}
-	}
+//	private void printNotParty() {
+//		System.out.println("===================[파티원아닌 유닛들]============");
+//		for(int i=0;i<this.guildList.size();i++) {
+//			if(!this.guildList.get(i).isParty()) {
+//			System.out.print("[" + (i + 1) + "번]");			
+//			System.out.print(" [이름 : " + this.guildList.get(i).getName() + "]");
+//			System.out.print(" [레벨 : " + this.guildList.get(i).getLevel() + "]");
+//			System.out.print(" [체력 : " + this.guildList.get(i).getHp());
+//			System.out.println(" / " + this.guildList.get(i).getMaxHp() + "]");
+//			System.out.print("[공격력 : " + this.guildList.get(i).getAtt()+ "]");
+//			System.out.print(" [방어력 : " + this.guildList.get(i).getDef() + "]");
+//			System.out.println(" [파티중 : " + this.guildList.get(i).isParty() + "]");
+//			System.out.println("");	
+//		}
+//			}
+//	}
 
 	private void printParty() {
 		System.out.println("================ [파티원] ===============");
@@ -152,16 +169,19 @@ public class Guild {
 	private void removeUnit() {
 		printAllUnitStaus();
 		System.out.println("삭제할 길드원 번호선택하세요");
-		int sel=MainGame.sc.nextInt()-1;				//1번부터 시작하므로 인덱스로 쓰이기위해 -1해줌
-		
-		if(this.guildList.get(sel).isParty()) {
-			System.out.println("파티중인 멤버는 삭제할수없습니다");
-		}else {
-			System.out.println("========================");
-			System.out.print("[이름: "+this.guildList.get(sel).getName()+"]");
-			System.out.println("길드원을 삭제합니다");
-			this.guildList.remove(sel);
-		}		
+		int sel = MainGame.sc.nextInt() - 1; // 1번부터 시작하므로 인덱스로 쓰이기위해 -1해줌
+		if (sel < this.guildList.size() && sel >= 0) {		//예외처리
+			if (this.guildList.get(sel).isParty()) {
+				System.out.println("파티중인 멤버는 삭제할수없습니다");
+			} else {
+				System.out.println("========================");
+				System.out.print("[이름: " + this.guildList.get(sel).getName() + "]");
+				System.out.println("길드원을 삭제합니다");
+				this.guildList.remove(sel);
+			}
+		} else {
+			System.out.println("번호를 확인해주세요");
+		}
 	}
 
 

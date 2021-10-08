@@ -83,6 +83,7 @@ public class Shop {
 			System.out.println("===============[상점]=============");
 			System.out.println("[1.무기] [2.갑옷] [3.반지] [0.뒤로가기]");
 			int sel = MainGame.sc.nextInt();
+			if(sel<4&&sel>-1) {		//예외처리
 			if (sel == 0)
 				break;
 			while (true) {
@@ -116,7 +117,7 @@ public class Shop {
 				}
 			}
 
-		}
+		}}
 	}
 
 	private void printItems(int sel) {

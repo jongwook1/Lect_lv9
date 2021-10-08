@@ -32,7 +32,9 @@ public class MainGame {
 			else if(sel==3) {
 				player.inventoryMenu();
 			}
-			else if(sel==4) {}
+			else if(sel==4) {
+				fileData.save();
+			}
 			else if(sel==5) {}
 			else {
 				System.out.println("종료");
