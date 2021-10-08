@@ -1,0 +1,16 @@
+73500
+6
+호랑이/1/14710/5/0/true
+1,숙련자용 검,7,2500,/2,숙련자용 갑옷,7,1500,/3,다이아반지,35,20000,
+강아지/1/1277/3/0/true
+null/null/null
+사슴/1/973/1/0/true
+null/null/null
+두더지/1/1175/2/0/true
+null/null/null
+돼지/1/2474/8/0/false
+null/null/null
+사자/1/16711/7/0/false
+null/null/null
+1
+1/숙련자용 검/7/2500
