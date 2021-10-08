@@ -50,7 +50,7 @@ public class Inventory {
 					System.out.println(this.itemList.get(selItemIdx - 1).name + "을 판매합니다");// selItemIdx 가 인덱스로 쓰일때는
 																							// -1해줌
 					this.itemList.remove(selItemIdx - 1);// selItemIdx 가 인덱스로 쓰일때는 -1해줌
-				}else {
+				} else {
 					System.out.println("번호를 확인해주세요");
 				}
 			} else {

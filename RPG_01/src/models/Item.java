@@ -11,9 +11,13 @@ public class Item {
 	String name;
 	int power;
 	int price;
-	
-	public void setItem(int k , String n , int p , int pr) {
-		kind= k; name = n; power = p; price = pr;
+
+	// road할때씀
+	public void setItem(int k, String n, int p, int pr) {
+		kind = k;
+		name = n;
+		power = p;
+		price = pr;
 	}
 
 	public String getName() {
@@ -47,6 +51,5 @@ public class Item {
 	public void setPower(int power) {
 		this.power = power;
 	}
-	
-	
+
 }
