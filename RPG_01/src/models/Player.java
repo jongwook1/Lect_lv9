@@ -1,5 +1,7 @@
 package models;
 
+import java.util.ArrayList;
+
 import controller.Guild;
 import controller.MainGame;
 
@@ -23,6 +25,14 @@ public class Player {
 
 	public static Unit getGuildUnit(int num) {
 		return guild.getGuildUnit(num);
+	}
+
+	public static ArrayList<Unit> getGuildList() {
+		return guild.getGuildList();
+	}
+	
+	public static int getItemSize() {
+		return inven.itemList.size();				
 	}
 	
 	

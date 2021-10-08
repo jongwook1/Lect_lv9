@@ -24,6 +24,22 @@ public class Item {
 		this.name = name;
 	}
 
+	public int getKind() {
+		return kind;
+	}
+
+	public void setKind(int kind) {
+		this.kind = kind;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 	public int getPower() {
 		return power;
 	}
