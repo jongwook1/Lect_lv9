@@ -130,8 +130,8 @@ public class ItemManager {
 		
 		int cnt=0;
 		for(int i=0;i<this.jangList.size();i++) {
-			if(this.jangList.get(i).getUserId()==user.getId()) {
-//			if(this.jang.get(i).getUserId().equals(user.getId())) {  이게 맞는것아닌가?질문하기
+//			if(this.jangList.get(i).getUserId()==user.getId()) {		//이렇게 하게되면 주소값을 비교하는거이되므로 이렇게하면 안됌
+			if(this.jangList.get(i).getUserId().equals(user.getId())) {  //바로위코드와 헷갈렸는데 위에것으로 하면 안됌
 				cnt++;
 				if(cnt==idx) {
 					jangIdx=i;

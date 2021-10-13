@@ -109,7 +109,7 @@ public class ItemManager {
 			int cnt=0;
 			for(int i=0;i<this.jang.size();i++) {
 				if(this.jang.get(i).getUserId().equals(user.getId())) {
-//				if(this.jangList.get(i).getUserId()==user.getId()) { 이것도 되는이유 질문하기
+//				if(this.jangList.get(i).getUserId()==user.getId()) { 이것도 되는이유 질문하기 이렇게 하면 주소값을 비교하게 되므로 이렇게 하면안됌
 					cnt++;
 				}
 				if(cnt==idx) {
