@@ -45,3 +45,4 @@ public class ScoreList {
 		scoreList.add(vo);
 	}
 }
+

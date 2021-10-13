@@ -11,6 +11,7 @@ public class Bike extends Vehicle {
 	}
 	public String toString() {
 		return "바이크의 이름은 " + name;
+		
 	}
 	
 }
