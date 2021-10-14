@@ -38,20 +38,31 @@ public class Game {
 			int sel=sc.nextInt();
 			if (sel == 1) {
 //				floor++;
-				int idx = -1; // 몬스터가 있는 층을 표시하기위한 idx변수
-				for (int i = 0; i < enemy.size(); i++) {
-					if (enemy.get(i).getPos() == p.getPos()) {
-						idx = i;
-					}
-				}
-				if (idx != -1) {
-					fight(idx);
-					idx = -1;
-				} else {
-					System.out.println("아무일도 일어나지 않았다..");
-				}
 				p.setPos(p.getPos() + 1);
-
+				
+				int enemyIdx = lookEnemyN();		//enemy에있는 몇번째 몬스터를 만났는지 확인하기위한 변수
+				if(enemyIdx!=-1) {
+					boolean a = fight(enemy.get(enemyIdx));
+					if(a == false) {
+						break;
+					}
+				}else {
+					System.out.println("아무일도 일어나지 않았다");
+				}
+				
+//				lookEnemyN(idx);
+//				for (int i = 0; i < enemy.size(); i++) {
+//					if (enemy.get(i).getPos() == p.getPos()) {
+//						System.out.println("좀비발견!!");
+//						idx = i;
+//					}
+//				}
+//				if (idx != -1) {
+//					idx = -1;
+//				} else {
+//					System.out.println("아무일도 일어나지 않았다..");
+//				}
+				act = 1; //여기서 해주지 않으면 sel=2 or sel=3 하고온후 층올갔을때 act가 2로 되어있어서 계속 층만올라갸야하는 경우발생
 			}
 			else if(sel==2 && act==1) {
 				int rNum = rn.nextInt(40)+20;
@@ -69,31 +80,80 @@ public class Game {
 		
 	}
 	
-	private void fight(int i) {
+	private int lookEnemyN() {
+//		int idx = -1; // 몬스터가 있는 층을 확인하기위한 idx변수
+		for (int i = 0; i < enemy.size(); i++) {
+			if (enemy.get(i).getPos() == p.getPos()) {
+				System.out.println("좀비발견!!");				
+				return i;							//enemy에있는 몇번째 몬스터를 만났는지 확인하기위한 변수
+			}
+		}
+		return -1;
+	}
+	
+	private boolean fight(Unit target) {
 		while(true) {
 		p.print();
 		System.out.println("==========VS========");
-		enemy.get(i).print();
+		target.print();
 		System.out.println("-----------");
 		System.out.println("[무엇을 할까? ]");
-		System.out.println("1.공격 2.물약(3개 남음)");
+		System.out.println("1.공격 2.물약(?개 남음)");
 		int sel=sc.nextInt();
-		if(sel==1) {
-			att(i);
+		if(sel==1) {			
+			p.attck(target);
 		}else if(sel==2) {
-			
+			p.drink();
 		}
+		if(die(target)!=0) {
+			break;
+		}
+		System.out.println();
+		target.attack(p);
+		if(die(target)!=0) {
+			break;
+		}
+		System.out.println();
+		}
+		if(die(target)==1) {
+			System.out.println("용사 사망..");
+			return false;
+		}
+		else {
+			System.out.println("좀비를 물리쳤다");
+			return true;
 		}
 	}
 	
-	private void att(int i) {
-		//용사의 공격력만큼 좀비한테 데미지를 줌
-		int remainEnemyHp=enemy.get(i).getHp()+enemy.get(i).getDef()-p.getAtt();
-		enemy.get(i).setHp(remainEnemyHp);
-		//좀비의 공격력만큼 용사한테 데미지를 줌
-		int remainPHp=p.getHp()+p.getDef()-enemy.get(i).getAtt();
-		p.setHp(remainPHp);		
+//	private boolean att(int i) {
+//		boolean checkDie=false;			//용사죽었을때 체크하기위한 변수
+//		//용사의 공격력만큼 좀비한테 데미지를 줌
+//		System.out.println("용사의 공격");
+//		System.out.println();
+//		int remainEnemyHp=enemy.get(i).getHp()+enemy.get(i).getDef()-p.getAtt();
+//		enemy.get(i).setHp(remainEnemyHp);
+//		
+//		//좀비의 공격력만큼 용사한테 데미지를 줌
+//		int remainPHp=p.getHp()+p.getDef()-enemy.get(i).getAtt();
+//		p.setHp(remainPHp);	
+//		if(p.getHp()<0) {
+//			return  checkDie=true;
+//		}
+//		return checkDie=false;
+//	}
+	
+	private int die(Unit enemyN) {
+		if(p.getHp()<=0) {
+			return 1;
+		}
+		else if(enemyN.getHp()<=0) {
+			return 2;
+		}
+		else {
+		return 0;
+		}
 	}
+	
 	private int enchant() {
 		int act=0;
 		int rNum = rn.nextInt(2)+1;

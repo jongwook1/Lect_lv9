@@ -53,4 +53,19 @@ public abstract class Unit {
 		System.out.println("[이름] : " + this.getName() + "[체력] : " +this.getHp() );
 		System.out.println("[공격력] : " + this.getAtt() + "[방어력] : "+ this.getDef() +"[위치] : "+this.getPos());
 	}
+	
+	public void attack(Unit target) {
+		int deal = (this.getAtt() - target.getDef())*(ran.nextInt(100)+50)/100;
+		if(deal<=0) {
+			deal = 1;
+		}
+		System.out.println(this.getName()+"의 공격!");
+		System.out.println(deal+"의 대미지!");
+		target.setHp(getHp()-deal);					//////////////target.gethp()로 안해도 맞나 확인하기
+		System.out.println(target.getName()+"의 남은 체력 : " + target.getHp());
+		
+	}
+	
+	
+	
 }
