@@ -176,5 +176,6 @@ public class Game {
 			System.out.println("[3] : 무기를 강화한다");
 		}
 	}
+	
 
 }
