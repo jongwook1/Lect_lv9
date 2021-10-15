@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
+import models.Heal;
 import models.Hero;
 import models.Unit;
 import models.Zombie;
+import models.ZombieKing;
+
 
 public class Game {
 	public static Scanner sc = new Scanner(System.in);
@@ -25,43 +28,48 @@ public class Game {
 
 	// Unit(String name, int hp, int att, int def, int pos)
 	public void init() {
-		p = new Hero("용사", 200, 50, 1, 11);
+		p = new Hero("용사", 200, 5, 1, 1);
 		enemyList.add(new Zombie("초급좀비", 100, 5, 1, 3));
 		enemyList.add(new Zombie("중급좀비", 150, 10, 1, 6));
 		enemyList.add(new Zombie("고급좀비", 200, 15, 1, 9));
-		enemyList.add(new ZombieKing("왕좀비", 100, 20, 4, 12,51));
+		enemyList.add(new ZombieKing("왕좀비", 100, 20, 4, 12, 51));
 	}
 
 	public void run() {
 		init();
 		int act = 1; // 체력회복이나 무기강화 둘중 하나만 할수있게 하기위해 act변수활용
 		while (true) {
+			if (p.getPos() >= 12) {
+				System.out.println("생존에 성공!!!!");
+				break;
+			}
 			printMenu(act);
 			int sel = sc.nextInt();
 			if (sel == 1) {
 				p.setPos(p.getPos() + 1);
-				int ememyN=check();
-				if(ememyN!=-1) {
+				int ememyN = check();
+				if (ememyN != -1) {
 					boolean a = fight(enemyList.get(ememyN));
-					if(a==false) {
+					if (a == false) {
 						System.out.println("용사가죽었으므로 게임종료");
 						break;
 					}
 
-					
-					
-				}else{
+				} else {
 					System.out.println("아무일도 일어나지 않았다");
-				};
+				}
+				;
 				act = 1;
 			} else if (sel == 2 && act == 1) {
-				int rN = ran.nextInt(40) + 20;
-				p.setHp(p.getHp() + rN);
-				System.out.println(rN + "만큼 체력회복");
-				act = 2;
+				
+				act = this.heal(act, p);				//마크 인터페이스 적용
+//				int rN = ran.nextInt(40) + 20;
+//				p.setHp(p.getHp() + rN);
+//				System.out.println(rN + "만큼 체력회복");
+//				act = 2;
 			} else if (sel == 3 && act == 1) {
 				act = enchant(act);
-				
+
 //				int rN = ran.nextInt(2) + 1; // 1과 2뿐이 안나오게 해서 1나오면 무기강화 2나오면 아머강화
 //				if (rN == 1) {
 //					int upRAtt = ran.nextInt(5) + 1;
@@ -79,6 +87,15 @@ public class Game {
 
 	}
 
+	public int heal(int act, Heal h) {			//마크 인터페이스 적용버전
+		Unit unit = (Unit) h;
+		int rN = ran.nextInt(40) + 20;
+		p.setHp(p.getHp() + rN);
+		
+		System.out.println(rN + "만큼 체력회복");
+		return act = 2;
+	}
+	
 	private boolean fight(Unit enemy) {
 		System.out.println("좀비가 나타났다");
 		while (true) {
@@ -87,57 +104,55 @@ public class Game {
 			enemy.print();
 			System.out.println("[무엇을 할까? ]");
 			System.out.println("1.공격 2.물약(" + p.getCnt() + "개 남음)");
-			int sel=sc.nextInt();
-			if(sel==1) {
+			int sel = sc.nextInt();
+			if (sel == 1) {
 				p.attack(enemy);
+			} else if (sel == 2) {				
+				p.drink(p);							//마크 인터페이스 적용버전
 			}
-			else if(sel==2) {
-				p.drink();
-			}
-			//용사공격후 용사와 좀비중 죽은사람있는지 판단
-			if(die(enemy)!=0) {				
-				break;				//죽은사람 발생시 while나오게함
+			// 용사공격후 용사와 좀비중 죽은사람있는지 판단
+			if (die(enemy) != 0) {
+				break; // 죽은사람 발생시 while나오게함
 			}
 			System.out.println();
 			enemy.attack(p);
-			//좀비공격후 용사와 좀비중 죽은사람있는지 판단
-			if(die(enemy)!=0) {
-				break;				//죽은사람 발생시 while나오게함
+			// 좀비공격후 용사와 좀비중 죽은사람있는지 판단
+			if (die(enemy) != 0) {
+				break; // 죽은사람 발생시 while나오게함
 			}
 			System.out.println();
-			
+
 		}
-		if(die(enemy)==1) {
+		if (die(enemy) == 1) {
 			System.out.println("용사 죽음....");
 			return false;
-		}
-		else {
-			System.out.println(enemy.getName()+"를 물리쳤다");
+		} else {
+			System.out.println(enemy.getName() + "를 물리쳤다");
 			return true;
 		}
 	}
 
 	private int die(Unit enemy) {
-		if(p.getHp()<=0) {
-			return 1;				//플레이어죽음
-		}else if(enemy.getHp()<=0) {
+		if (p.getHp() <= 0) {
+			return 1; // 플레이어죽음
+		} else if (enemy.getHp() <= 0) {
 			return 2;
 		}
 		return 0;
 	}
 
 	private int check() {
-		for(int i=0; i<enemyList.size(); i++) {
-		if(p.getPos() == enemyList.get(i).getPos())
-			return i;
-			
-			}
+		for (int i = 0; i < enemyList.size(); i++) {
+			if (p.getPos() == enemyList.get(i).getPos())
+				return i;
+
+		}
 		return -1;
-		
+
 	}
 
 	private int enchant(int act) {
-		
+
 		int rN = ran.nextInt(2) + 1; // 1과 2뿐이 안나오게 해서 1나오면 무기강화 2나오면 아머강화
 		if (rN == 1) {
 			int upRAtt = ran.nextInt(5) + 1;

@@ -2,7 +2,7 @@ package models;
 
 import controller.Game;
 
-public class Hero extends Unit {
+public class Hero extends Unit implements Heal{
 
 	public Hero(String name, int hp, int att, int def, int pos) {
 		super(name, hp, att, def, pos);
@@ -24,6 +24,7 @@ public class Hero extends Unit {
 				}
 				System.out.println(this.getName() + "의 공격!");
 				System.out.println(deal + "의 데미지");
+				((ZombieKing) enemy).setShield(((ZombieKing) enemy).getShield() - deal);
 				if (((ZombieKing) enemy).getShield() <= 0) {
 					System.out.println(enemy.getName() + "의 쉴드가 깨졌습니다");
 					((ZombieKing) enemy).setShield(0);
@@ -36,11 +37,15 @@ public class Hero extends Unit {
 		}
 	}
 
-	public void drink() {
-		if(this.getCnt()>0) {
+	public void drink(Heal h) {				//마크인터페이스 적용버전
+		Unit unit = (Unit) h;
+		if (this.getCnt() > 0) {
 			System.out.println("회복약을 마십니다");
-			
+			System.out.println("체력이 100회복 되었습니다");
+			this.setHp(this.getHp() + 100);
+			System.out.println(this.getName() + "의 남은 체력 : " + this.getHp());
+			cnt--; // 물약한개 썻으므로 1개씩 마이너스 해줌
 		}
-		
+
 	}
 }
