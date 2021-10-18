@@ -28,7 +28,7 @@ public class Game {
 
 	// Unit(String name, int hp, int att, int def, int pos)
 	public void init() {
-		p = new Hero("용사", 200, 5, 1, 1);
+		p = new Hero("용사", 200, 5, 1, 1);	// Unit->Hero에서 물려받은 생성자(String name,int hp, int att, int def, int pos)에 값을넣어줌
 		enemyList.add(new Zombie("초급좀비", 100, 5, 1, 3));
 		enemyList.add(new Zombie("중급좀비", 150, 10, 1, 6));
 		enemyList.add(new Zombie("고급좀비", 200, 15, 1, 9));
@@ -59,7 +59,7 @@ public class Game {
 					System.out.println("아무일도 일어나지 않았다");
 				}
 				;
-				act = 1;
+				act = 1;	// 여기서 해주지 않으면 sel=2 or sel=3 하고온후 층올갔을때 act가 2로 되어있어서 계속 층만올라갸야하는 경우발생
 			} else if (sel == 2 && act == 1) {
 				
 				act = this.heal(act, p);				//마크 인터페이스 적용
@@ -136,7 +136,7 @@ public class Game {
 		if (p.getHp() <= 0) {
 			return 1; // 플레이어죽음
 		} else if (enemy.getHp() <= 0) {
-			return 2;
+			return 2;	//좀비죽음
 		}
 		return 0;
 	}
@@ -144,7 +144,7 @@ public class Game {
 	private int check() {
 		for (int i = 0; i < enemyList.size(); i++) {
 			if (p.getPos() == enemyList.get(i).getPos())
-				return i;
+				return i;	// enemy에있는 몇번째 몬스터를 만났는지 확인
 
 		}
 		return -1;

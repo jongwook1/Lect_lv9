@@ -2,7 +2,7 @@ package models;
 
 import controller.Game;
 
-public class Hero extends Unit implements Heal{
+public class Hero extends Unit implements Heal,Attack{
 
 	public Hero(String name, int hp, int att, int def, int pos) {
 		super(name, hp, att, def, pos);
@@ -48,4 +48,7 @@ public class Hero extends Unit implements Heal{
 		}
 
 	}
+
+	
+
 }

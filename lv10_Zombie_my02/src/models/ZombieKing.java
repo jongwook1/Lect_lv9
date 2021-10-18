@@ -2,7 +2,7 @@ package models;
 
 import controller.Game;
 
-public class ZombieKing extends Unit {
+public class ZombieKing extends Unit implements Attack {
 
 	int shield = 0;
 
