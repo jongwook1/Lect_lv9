@@ -2,20 +2,18 @@ package stage;
 
 import controller.GameManager;
 
-public class StageLobby extends Stage{
+public class StageLobby extends Stage {
 
 	@Override
 	public boolean update() {
 		System.out.println("==========[LOBBY]=========");
 		System.out.println("[1.전투] [2.종료]");
 		int sel = GameManager.sc.nextInt();
-		if(sel == 1) {
+		if (sel == 1) {
 			GameManager.nextStage = "BATTLE";
-		}
-		else if(sel == 2) {
+		} else if (sel == 2) {
 			GameManager.nextStage = "";
-		}
-		else {
+		} else {
 			GameManager.nextStage = "";
 		}
 		return false;
@@ -24,7 +22,7 @@ public class StageLobby extends Stage{
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

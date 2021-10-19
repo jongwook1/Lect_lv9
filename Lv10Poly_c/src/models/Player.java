@@ -1,13 +1,12 @@
 package models;
 
-public class Player extends Unit{
+public class Player extends Unit {
 
-	public Player(String na, int max , int pow){
+	public Player(String na, int max, int pow) {
 		super(na, max, pow);
 	}
 
-	void skill() {}
+	void skill() {
+	}
 
-
-	
 }
