@@ -103,8 +103,8 @@ class Triangle extends Shape {
 public class Ex06 {
 
 	public static void main(String[] args) {
-		Scanner sc= new Scanner(System.in);
-		
+		Scanner sc = new Scanner(System.in);
+
 		ArrayList<Shape> list = new ArrayList<Shape>();
 		list.add(new Dot());
 		list.add(new Line());
@@ -112,14 +112,14 @@ public class Ex06 {
 		list.add(new Circle());
 		list.add(new Triangle());
 
-		for(int i=0; i<list.size(); i++) {
-			System.out.println(i+1+") "+list.get(i));
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(i + 1 + ") " + list.get(i));
 		}
 		System.out.print("메뉴: ");
-		int sel= sc.nextInt()-1;
-		
+		int sel = sc.nextInt() - 1;
+
 		list.get(sel).draw();
-		
+
 	}
 
 }
@@ -143,6 +143,3 @@ public class Ex06 {
 //오크
 //고블린
 //슬라임
-
-
-

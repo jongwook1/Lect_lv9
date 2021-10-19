@@ -27,7 +27,7 @@ class MainControl{
 }
 
 
-public class Ex01 {
+public class Ex01_SingletonAndStopWatch {
 //인터넷에 jdk 11 doc->JDK 11 Documentation - Home - Oracle Help Center->API Documentation
 //->java.base->java.text->SimpleDateFormat
 	public static void main(String[] args) {

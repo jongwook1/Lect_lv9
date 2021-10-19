@@ -59,7 +59,7 @@ class Tank extends GroundUnit implements Repairable, Damageable{
 	// super() : 부모의 생성자를 호출(기본생성자는 생략 O)
 	// super.  : 부모가 가진 멤버에 접근
 	public Tank() {
-		super(150);		// MAX_HP 를 우선 초기화
+		super(150);		//여기서 MAX_HP 를 우선 초기화
 		hp = MAX_HP;		// 0초기화 되어있는 Unit의 hp를 MAX로 맞춰줌		//super.hp = super.MAX_HP;
 		super.setName("Tank");
 		System.out.printf("TANK의 생성.. Unit [hp :  %d]\n", hp);
@@ -108,7 +108,7 @@ class SCV extends GroundUnit implements Repairable , Damageable{
 		System.out.printf("SCV의 생성..Unit [hp : %d]\n", hp);
 	}
 	
-	public void repair(Repairable repairable) {		//이부분 헷갈렸으므로 숙지하기 repairable을 유닛으로 생각하면 좀더 편함
+	public void repair(Repairable repairable) {//수리가 가능한 객체를 인자로 받아서, //이부분 헷갈렸으므로 숙지하기 repairable을 유닛으로 생각하면 좀더 편함
 		// Upcasting -> Unit 의 멤버 hp 처리하기 위함
 		Unit unit = (Unit) repairable;
 		
@@ -169,9 +169,9 @@ public class Ex05_Starcraft {
 		
 		
 		scv.repair(tank);
-//		scv.repair(marine);			//마크인터페이스가 없어서 수리불가
+//		scv.repair(marine);			//마크인터페이스 즉 repairable가 붙지않아서 수리불가
 		scv.repair(scv);
-//		scv.repair(ship);			//마크인터페이스가 없어서 수리불가
+//		scv.repair(ship);			//마크인터페이스 즉 repairable가 붙지않아서 수리불가
 
 	}
 
