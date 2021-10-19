@@ -1,7 +1,7 @@
 package models;
 
 public class UnitWolf extends Unit {
-	UnitWolf() {
+	public UnitWolf() {
 		this.setName("늑대");
 	}
 

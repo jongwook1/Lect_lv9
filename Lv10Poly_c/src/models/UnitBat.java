@@ -1,7 +1,7 @@
 package models;
 
 public class UnitBat extends Unit {
-	UnitBat() {
+	public UnitBat() {
 		this.setName("박쥐");
 	}
 

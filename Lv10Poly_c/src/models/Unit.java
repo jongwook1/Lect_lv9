@@ -76,7 +76,7 @@ public abstract class Unit {
 	}
 
 	public void attack(Unit target) {
-		target.setCurhp(getCurhp() - this.getPower());
+		target.setCurhp(target.getCurhp() - this.getPower());
 		System.out.println(
 				"[" + this.getName() + "] 이 " + "[" + target.getName() + "] 에게 " + this.getPower() + "의 데미지를 입힙니다. ");
 

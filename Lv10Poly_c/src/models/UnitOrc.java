@@ -1,7 +1,7 @@
 package models;
 
 public class UnitOrc extends Unit {
-	UnitOrc() {
+	public UnitOrc() {
 		this.setName("오크");
 	}
 

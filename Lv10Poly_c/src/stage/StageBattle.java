@@ -38,7 +38,7 @@ public class StageBattle extends Stage {
 				if (m_index < monList.size()) {
 					monster_attack(m_index);
 					// 몬스터중 한놈 공격끝났으므로 다음놈으로 바꺼줌
-					p_index += 1;
+					m_index += 1;
 				} else {
 					turn = !turn;
 					m_index = 0;
