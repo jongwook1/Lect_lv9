@@ -3,8 +3,7 @@ package controller;
 import java.util.Random;
 import java.util.Vector;
 
-import models.Player;
-import models.Unit;
+import models.*;
 
 public class UnitManager {
 	
@@ -24,6 +23,7 @@ public class UnitManager {
 		for(int i = 0; i < size; i++) {
 			int num = ran.nextInt(mons.length);
 			try {
+				System.out.println(path + this.mons[num]);
 				Class<?> clazz = Class.forName(path + mons[num]);					
 				Object obj = clazz.newInstance();
 				Unit temp = (Unit)obj;
