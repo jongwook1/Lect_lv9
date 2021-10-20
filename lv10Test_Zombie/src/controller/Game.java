@@ -22,7 +22,7 @@ public class Game {
 	
 	ArrayList<Unit> enemyList = new ArrayList<>();
 	public static Scanner sc = new Scanner(System.in);
-	public Random rn = new Random();
+	public static Random rn = new Random();
 	
 	public void init() {
 		p = new Hero("용사", 200, 5, 1, 1);		//Hero클래스 생성자를 public 해야 이코드 작동
@@ -41,13 +41,85 @@ public class Game {
 			printMenu(act);
 			int sel = sc.nextInt();
 			if(sel == 1) {
+				p.setPos(p.getPos() + 1);
+				int enemyN = check();
+				if(enemyN == -1) {
+					System.out.println("아무일도 일어나지 않았다");
+				}
+				else {				
+						boolean a = fight(enemyList.get(enemyN));
+					
+				}
+				act = 1;
 				
-			}else if(sel == 2) {
+			}else if(sel == 2 && act == 1) {
 				act = heal(act, p);
-			}else if(sel == 3) {
-				
+			}else if(sel == 3 && act == 1) {
+				act = enchant(act, p);
 			}
 		}
+	}
+
+	private boolean fight(Unit enemy) {
+		System.out.println("좀비발견!");
+		while(true) {
+		p.print();
+		System.out.println("=========VS===========");
+		enemy.print();
+		System.out.println("[무엇을 할까? ]");
+		System.out.println("1.공격 2.물약 ("+ p.getCnt() +"개 남음)");
+		int sel = sc.nextInt();		
+		if(sel == 1) {
+			p.attack(enemy);
+		}
+		else if (sel == 2) {
+			
+		}
+		if(die(enemy) != 0) {
+			break;
+		}
+		System.out.println();
+		enemy.attack(p);
+		if(die(enemy) != 0) {
+			break;
+		}
+		System.out.println();
+		}
+		return false;
+	}
+
+	private int die(Unit enemy) {
+		if(p.getHp() <= 0) {
+			return 1;	//플레이어 죽음
+		}
+		else if (enemy.getHp() <= 0) {
+			return 2;		//좀비죽음
+		}
+		return 0;
+	}
+
+	private int check() {
+		int idx = -1;
+		for(int i = 0; i < enemyList.size(); i++) {
+		if(enemyList.get(i).getPos() == p.getPos()) {
+			idx = i;
+		}
+			}
+		return idx;
+	}
+
+	private int enchant(int act, Hero p) {
+		int rN = rn.nextInt(2)+1;
+		if(rN == 1) {
+			int addAtt = rn.nextInt(5)+1;
+			p.setAtt(p.getAtt()+addAtt);
+			System.out.println("공격력이 " + addAtt + "만큼 증가되었습니다");
+		}else if(rN==2) {
+			int addDef = rn.nextInt(3)+1;
+			p.setDef(p.getDef()+addDef);
+			System.out.println("방어력이 " + addDef + "만큼 증가되었습니다");
+		}
+		return act = 2;
 	}
 
 	private int heal(int act, Hero p) {

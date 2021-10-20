@@ -1,5 +1,7 @@
 package models;
 
+import controller.Game;
+
 public abstract class Unit {
 	private String name;
 	private int hp;
@@ -64,6 +66,23 @@ public abstract class Unit {
 		this.att = att;
 		this.def = def;
 		this.pos = pos;
+	}
+	
+	public void print() {
+		System.out.println("[이름 ] : " + this.getName() +" [체력 ] : " + this.getHp());
+		System.out.println("[공격력 ] : " + this.getAtt() + "[방어력 ] : " + this.getDef());
+	}
+	
+	public void attack(Unit enemy) {
+		int rN = Game.rn.nextInt(150)+50;
+		int deal = (this.getAtt()-enemy.getDef())*rN/100;
+		if(deal <= 0) {
+			deal = 1;
+		}
+		System.out.println(this.getName() + "의 공격!" );
+		System.out.println(deal + "의 데미지");
+		enemy.setHp(enemy.getHp() - deal);
+		System.out.println(enemy.getName() + "의 남은 체력 : " + enemy.getHp());
 	}
 	
 }
