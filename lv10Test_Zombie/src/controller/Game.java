@@ -1,6 +1,8 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
 
 import models.Hero;
 import models.Unit;
@@ -19,6 +21,8 @@ public class Game {
 	private Hero p;
 	
 	ArrayList<Unit> enemyList = new ArrayList<>();
+	public static Scanner sc = new Scanner(System.in);
+	public Random rn = new Random();
 	
 	public void init() {
 		p = new Hero("용사", 200, 5, 1, 1);		//Hero클래스 생성자를 public 해야 이코드 작동
@@ -35,8 +39,22 @@ public class Game {
 		int act = 1;
 		while(true) {
 			printMenu(act);
-			
+			int sel = sc.nextInt();
+			if(sel == 1) {
+				
+			}else if(sel == 2) {
+				act = heal(act, p);
+			}else if(sel == 3) {
+				
+			}
 		}
+	}
+
+	private int heal(int act, Hero p) {
+		int rHeal = rn.nextInt(50)+20;
+		p.setHp(p.getHp()+rHeal);
+		System.out.println("체력이 " + rHeal + "만큼 회복되었습니다");
+		return act = 2;		
 	}
 
 	private void printMenu(int act) {
