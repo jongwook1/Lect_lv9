@@ -32,18 +32,20 @@ public class Game {
 	
 	public void run() {
 		init();
+		int act = 1;
 		while(true) {
-			printMenu();
-			break;
+			printMenu(act);
+			
 		}
 	}
 
-	private void printMenu() {
+	private void printMenu(int act) {
 		System.out.println("[ 현재 층 : " + p.getPos() + "]");
 		System.out.println("[1] : 올라간다");
+		if(act == 1) {
 		System.out.println("[2] : 체력을 회복한다");
 		System.out.println("[3] : 무기를 강화한다");
-		
+		}
 	}
 	
 	
