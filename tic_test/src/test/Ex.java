@@ -7,9 +7,26 @@ import java.awt.event.ActionListener;
 import java.awt.*;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+class AlerFrame extends JFrame{
+	JLabel text = new JLabel();
+	
+	public AlerFrame(String text) {
+		setLayout(null);
+		setBounds(200,200,300,200);
+		setVisible(true);
+		
+		this.text.setBounds(0,0,300,200);
+		this.text.setText(text);
+		this.text.setHorizontalAlignment(JLabel.CENTER);
+		this.text.setVisible(true);
+		add(this.text);
+		
+	}
+}
 
 class Content extends JPanel implements ActionListener{		//액션리스너 임폴트안될때-setMap메소드의 this.map[i].addActionListener(this);먼저해주기
 	private JButton[] map;
@@ -21,6 +38,20 @@ class Content extends JPanel implements ActionListener{		//액션리스너 임�
 	
 	private int cnt = 1;
 	
+	JButton reset = new JButton();
+	
+	
+	private int min;
+	private int sec;
+	private int ms;
+	private JLabel watch = new JLabel();
+	
+	private void setWatch() {
+		this.watch.setBounds(0,0,200,100);
+		this.watch.setText(String.format("%2d, %2d, %3d\n",this.min,this.sec,this.ms));
+		add(this.watch);
+	}
+	
 	public Content() {
 		setLayout(null);
 		setBounds(0,0,700,700);
@@ -30,6 +61,8 @@ class Content extends JPanel implements ActionListener{		//액션리스너 임�
 		
 		
 	}
+	
+	
 	
 
 	
@@ -60,16 +93,62 @@ class Content extends JPanel implements ActionListener{		//액션리스너 임�
 	
 	private void checkWin() {
 		this.win = this.win == 0 ? checkHori() : this.win;
+		this.win = this.win == 0 ? checkVerti() : this.win;
+		this.win = this.win == 0 ? checkDia() : this.win;
+		this.win = this.win == 0 ? checkReverse() : this.win;
 		
 		
 		if(!this.printWinner && this.win != 0) {
-			
-			JOptionPane.showMessageDialog(null, "승");
+			new AlerFrame(String.format("%d번째 게임 p%d의 승!!", this.cnt,this.win));
+//			JOptionPane.showMessageDialog(null, "승");
 			
 			this.printWinner = true;
 			this.cnt++;
 			
 		}
+	}
+
+
+
+	private int checkReverse() {
+		int cnt = 0;
+		for(int i=0; i<3; i++) {
+			if(this.mark[(i+1)*2] == this.turn)
+				cnt ++;
+		}
+		if(cnt == 3)
+			return this.turn;
+		return 0;
+	}
+
+
+
+	private int checkDia() {
+		int cnt = 0;
+		for(int i=0; i<3; i++) {
+			if(this.mark[i*4] == this.turn)
+				cnt++;			
+		}
+		if(cnt == 3)
+			return this.turn;
+		return 0;
+		
+	}
+
+
+
+	private int checkVerti() {
+		for(int i = 0 ; i<3; i++) {
+			int cnt = 0;
+			for(int j = 0; j < 3; j++) {
+				if(this.mark[i+j*3] == this.turn) {
+					cnt++;
+				}
+				if(cnt == 3)
+					return this.turn;
+			}
+		}
+		return 0;
 	}
 
 
@@ -94,8 +173,12 @@ class Content extends JPanel implements ActionListener{		//액션리스너 임�
 	public void actionPerformed(ActionEvent e) {
 		JButton target = (JButton) e.getSource();
 
+		if(target == this.reset) {
+			resetMap();
+		}
+		else {
 		for (int i = 0; i < this.map.length; i++) {
-			if (target == this.map[i]) {
+			if (target == this.map[i] && this.mark[i] == 0) {
 				if (this.turn == 1)
 					target.setBackground(Color.black);
 				else
@@ -105,7 +188,20 @@ class Content extends JPanel implements ActionListener{		//액션리스너 임�
 				this.turn = this.turn == 1 ? 2 : 1;
 			}
 		}
+		}
 
+	}
+
+
+
+	private void resetMap() {
+		for(int i = 0; i < this.map.length; i++) 
+			this.map[i].setBackground(Color.lightGray);
+		this.mark = new int[9];
+		this.turn = 1;
+		this.win = 0;
+		this.reset.setText("START");
+		
 	}
 }
 
@@ -116,7 +212,7 @@ class Tictaetoe extends JFrame{
 	public final int W = dm.width;
 	public final int H = dm.height;
 	
-	
+	private Content content = new Content();
 	
 	public Tictaetoe() {
 		super("TIC TAC TOE");
@@ -129,6 +225,13 @@ class Tictaetoe extends JFrame{
 		setVisible(true);
 		revalidate();
 	}
+
+
+
+	public void setWatchTime(int n) {
+		content.setWatchTime(n);
+		
+	}
 	
 	
 }
@@ -139,6 +242,15 @@ public class Ex {
 	public static void main(String[] args) {
 		Tictaetoe ttt = new Tictaetoe();
 		
+		int n = 0;
+		while(true) {
+			try {
+				Thread.sleep(100);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			ttt.setWatchTime(n);
+		}
 	}
 
 }
