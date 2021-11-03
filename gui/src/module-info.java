@@ -1,3 +1,3 @@
-module gui {
+module M {
 	requires java.desktop;
 }
