@@ -15,7 +15,7 @@ public class MyBoard extends JFrame {
 		setBounds(100, 100, 900, 700);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		add(new DrawPanel());
-		
+//		p.close
 		
 		setVisible(true);
 		revalidate();
