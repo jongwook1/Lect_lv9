@@ -11,8 +11,8 @@ public class MFrame extends JFrame {
 		setBounds(100, 100, 800, 800);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		add(new MPanel());
-		
+//		add(new MPanel());
+		add(new MPanel2());
 		setVisible(true);
 		revalidate();
 	}
