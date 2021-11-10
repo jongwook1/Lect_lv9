@@ -92,11 +92,12 @@ public class Racing extends MyUtil implements Runnable{
 			g.drawLine(30, h.getY()+h.getH(), Race.WIDTH-30, h.getY()+h.getH());
 			
 			// rank
-			if(h.getState() == h.GOAL)
+			if(h.getState() == h.GOAL) {
 				g.setFont(new Font("",Font.PLAIN, 10));
 				g.drawString(h.getRecord(), Race.WIDTH-180, h.getY()+h.getH()/2);
 				g.setFont(new Font("",Font.BOLD, 20));
-				g.drawString(h.getRank() + "등", Race.WIDTH-180-30, h.getY()+h.getH()/2);			
+				g.drawString(h.getRank() + "등", Race.WIDTH-180-30, h.getY()+h.getH()/2);
+				}			
 		}
 		
 		try {
